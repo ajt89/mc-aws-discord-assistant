@@ -1,1 +1,1 @@
-#mc-aws-discord-assistant
+# mc-aws-discord-assistant
