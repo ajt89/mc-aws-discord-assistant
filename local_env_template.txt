@@ -1,1 +1,3 @@
+AUTHORIZED_ROLE=minecraft
+AUTHORIZED_CHANNEL=minecraft
 DISCORD_BOT_TOKEN=<bot-token-here>

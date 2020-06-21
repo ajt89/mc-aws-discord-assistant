@@ -17,9 +17,9 @@ update:
 
 format:
 	- . .venv/bin/activate; \
-	isort ; \
+	isort -rc; \
 	black . 
 
 run:
 	- . .venv/bin/activate; \
-	python bot.py
+	python bot/bot.py
