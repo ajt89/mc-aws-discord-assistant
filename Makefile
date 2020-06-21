@@ -1,3 +1,6 @@
+include .env
+export 
+
 clean:
 	- rm -rf .venv
 
@@ -16,3 +19,7 @@ format:
 	- . .venv/bin/activate; \
 	isort ; \
 	black . 
+
+run:
+	- . .venv/bin/activate; \
+	python bot.py
