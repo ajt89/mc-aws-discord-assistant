@@ -18,11 +18,11 @@ def filter_message(message: discord.message.Message, client: discord.client.Clie
     if AUTHORIZED_ROLE not in user_role_names:
         return True
 
+    if not message.content.startswith("!mc "):
+        return True
+
 
 def handle_message(message: discord.message.Message) -> str:
-    if not message.content.startswith("!mc"):
-        return
-
     message_params = message.content.split(" ")[1:]
 
     return help_message()
