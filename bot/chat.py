@@ -1,5 +1,6 @@
 import discord
 
+from aws import AWSService
 from constants import AUTHORIZED_CHANNEL, AUTHORIZED_ROLE
 
 
@@ -29,13 +30,12 @@ def handle_message(message: discord.message.Message) -> str:
 
 
 def server_status() -> str:
-    state = "stopped"
-    dns = ""
-    return (
-        f"Server status:\n"
-        f"\t State: {state}\n"
-        f"\t DNS: {dns}\n"
-    )
+    aws_service = AWSService()
+    server_status = aws_service.check_server_status()
+    state = server_status.get("state")
+    dns = server_status.get("dns")
+    return f"Server status:\n" f"\t State: {state}\n" f"\t DNS: {dns}:25565\n"
+
 
 def help_message() -> str:
     return (
