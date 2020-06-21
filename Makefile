@@ -23,3 +23,13 @@ format:
 run:
 	- . .venv/bin/activate; \
 	python bot/bot.py
+
+docker-build:
+	docker build -t $(DOCKER_HOST)/mc-aws-discord-assistant:$(TAG) . 
+
+docker-run:
+	- . .env; \
+	docker run --rm --env-file .env $(DOCKER_HOST)/mc-aws-discord-assistant:$(TAG)
+
+docker-push:
+	- docker push $(DOCKER_HOST)/mc-aws-discord-assistant:$(TAG)

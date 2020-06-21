@@ -4,3 +4,5 @@ DISCORD_BOT_TOKEN=<bot-token-here>
 AWS_ACCESS_KEY_ID=<access-key-here>
 AWS_SECRET_ACCESS_KEY=<secret-access-key-here>
 REGION=us-west-1
+TAG=active
+DOCKER_HOST=ajt89

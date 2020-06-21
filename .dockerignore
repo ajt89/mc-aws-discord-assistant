@@ -1,0 +1,10 @@
+.vscode
+.venv
+.env
+.gitignore
+Dockerfile
+Makefile
+*.txt
+*.toml
+*.txt
+!requirements.txt
