@@ -4,9 +4,6 @@ from constants import AUTHORIZED_CHANNEL, AUTHORIZED_ROLE
 
 
 def filter_message(message: discord.message.Message, client: discord.client.Client) -> bool:
-    """
-    See if message is from the correct channel and user has correct role
-    """
     if message.author == client.user:
         return True
 
@@ -25,8 +22,20 @@ def filter_message(message: discord.message.Message, client: discord.client.Clie
 def handle_message(message: discord.message.Message) -> str:
     message_params = message.content.split(" ")[1:]
 
+    if message_params[0] == "server" and message_params[1] == "status":
+        return server_status()
+
     return help_message()
 
+
+def server_status() -> str:
+    state = "stopped"
+    dns = ""
+    return (
+        f"Server status:\n"
+        f"\t State: {state}\n"
+        f"\t DNS: {dns}\n"
+    )
 
 def help_message() -> str:
     return (
