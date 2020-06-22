@@ -6,3 +6,4 @@ AWS_SECRET_ACCESS_KEY=<secret-access-key-here>
 REGION=us-west-1
 TAG=active
 DOCKER_HOST=ajt89
+RCON_PASSWORD=<password-here>

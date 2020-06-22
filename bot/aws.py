@@ -63,6 +63,8 @@ class AWSService:
 
         self.ec2_client.stop_instances(InstanceIds=[self.instance_id])
         response = self.check_server_status()
+        response["ip"] = None
+        response["dns"] = None
         response["stop"] = True
 
         return response
