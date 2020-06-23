@@ -41,7 +41,7 @@ class AWSService:
         self.update_instance_details(self.get_instance_by_id())
         return {"state": self.instance_state, "dns": self.instance_dns, "ip": self.instance_ip}
 
-    def get_server_state(self) -> bool:
+    def is_server_running(self) -> bool:
         self.update_instance_details(self.get_instance_by_id())
         return bool(self.instance_state in RUNNING_STATES)
 

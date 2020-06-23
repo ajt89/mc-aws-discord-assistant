@@ -23,7 +23,7 @@ class MCServerStatus:
 
     def mc_server_status(self) -> bool:
         # import pdb; pdb.set_trace()
-        if not self.aws_service.get_server_state():
+        if not self.aws_service.is_server_running():
             print("Server Offline")
             return False
 
