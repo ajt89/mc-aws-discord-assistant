@@ -7,4 +7,5 @@ Makefile
 *.txt
 *.toml
 *.txt
+deployment
 !requirements.txt

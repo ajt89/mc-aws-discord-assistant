@@ -1,0 +1,13 @@
+[Unit]
+Description=Minecraft AWS Discord Assistant
+After=network.target
+
+[Service]
+User=ubuntu
+Type=simple
+WorkingDirectory=/opt/mcad
+ExecStartPre=docker pull ajt89/mc-aws-discord-assistant:latest
+ExecStart=docker run --rm --env-file .env ajt89/mc-aws-discord-assistant:latest
+
+[Install]
+WantedBy=multi-user.target
