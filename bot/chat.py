@@ -100,6 +100,8 @@ class ChatService:
 
     def server_stop_check(self) -> str:
         self.parse_server_status(self.aws_service.check_server_status())
+        if not self.server_ip:
+            return f"Server already stopped:\n" f"\t State: {self.server_state}\n"
         self.parse_user_list()
         if self.number_of_users:
             return f"There are {self.number_of_users} user(s) online, are you sure?"
