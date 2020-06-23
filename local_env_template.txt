@@ -7,3 +7,5 @@ REGION=us-west-1
 TAG=active
 DOCKER_HOST=ajt89
 RCON_PASSWORD=<password-here>
+MC_CHANNEL_ID=<channel-id>
+SERVER_CHECK_INTERVAL=3600

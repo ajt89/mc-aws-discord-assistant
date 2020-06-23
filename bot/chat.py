@@ -63,11 +63,10 @@ class ChatService:
     def parse_user_list(self):
         try:
             mcr = MCRconService(self.server_ip)
-            mcr_user_list_split = mcr.list_users().split(": ")
-            players_online = mcr_user_list_split[0].split(" ")
-            self.number_of_users = int(players_online[2])
-            self.max_users = int(players_online[6])
-            self.users = mcr_user_list_split[1].split(" ")
+            mcr.parse_user_list(mcr.list_users())
+            self.number_of_users = mcr.number_of_users
+            self.max_users = mcr.max_users
+            self.users = mcr.users
         except ConnectionRefusedError as e:
             print(e)
 
