@@ -6,8 +6,8 @@ After=network.target
 User=ubuntu
 Type=simple
 WorkingDirectory=/opt/mcad
-ExecStartPre=docker pull ajt89/mc-aws-discord-assistant:latest
-ExecStart=docker run --rm --env-file .env ajt89/mc-aws-discord-assistant:latest
+ExecStartPre=/usr/bin/docker pull ajt89/mc-aws-discord-assistant:latest
+ExecStart=/usr/bin/docker run --rm --env-file .env ajt89/mc-aws-discord-assistant:latest
 
 [Install]
 WantedBy=multi-user.target
