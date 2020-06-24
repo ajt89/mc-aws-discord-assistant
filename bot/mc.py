@@ -18,7 +18,7 @@ class MCRconService:
         mcr_user_list_split = mcr_user_list.split(": ")
         players_online = mcr_user_list_split[0].split(" ")
         self.number_of_users = int(players_online[2])
-        self.max_users = int(players_online[6])
+        self.max_users = int(players_online[7])
         self.users = mcr_user_list_split[1].split(" ")
 
     def list_users(self) -> str:
