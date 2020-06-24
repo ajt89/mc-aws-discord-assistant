@@ -72,7 +72,7 @@ class ChatService:
 
     def server_status(self) -> str:
         self.parse_server_status(self.aws_service.check_server_status())
-        message = f"Server status:\n" f"\t State: {self.server_state}\n"
+        message = f"Server status:\n" f"\t VM State: {self.server_state}\n"
         if self.server_ip:
             self.parse_user_list()
             message += f"\t IP: {self.server_ip}:25565\n"
@@ -88,13 +88,13 @@ class ChatService:
         if self.is_server_started:
             return (
                 f"Server Running:\n"
-                f"\t State: {self.server_state}\n"
+                f"\t VM State: {self.server_state}\n"
                 f"\t IP: {self.server_ip}:25565\n"
             )
         else:
             return (
                 f"Server already running:\n"
-                f"\t State: {self.server_state}\n"
+                f"\t VM State: {self.server_state}\n"
                 f"\t IP: {self.server_ip}:25565\n"
             )
 
