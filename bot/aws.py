@@ -1,3 +1,5 @@
+import time
+
 import boto3
 
 from constants import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, REGION
@@ -18,57 +20,62 @@ class AWSService:
         self.instance_state = None
         self.instance_dns = None
         self.instance_ip = None
+        self.is_instance_running = None
 
-        self.update_instance_details(self.get_instance_by_name())
+        self._parse_instance_details(self._get_instance_by_name())
 
-    def get_instance_by_name(self) -> dict:
+    def _get_instance_by_name(self) -> dict:
         response = self.ec2_client.describe_instances(
             Filters=[{"Name": "tag:Name", "Values": ["minecraft-server"]}]
         )
         return response.get("Reservations")[0].get("Instances")[0]
 
-    def get_instance_by_id(self) -> dict:
+    def _get_instance_by_id(self) -> dict:
         response = self.ec2_client.describe_instances(InstanceIds=[self.instance_id])
         return response.get("Reservations")[0].get("Instances")[0]
 
-    def update_instance_details(self, instance: dict):
+    def _parse_instance_details(self, instance: dict):
         self.instance_id = instance.get("InstanceId")
         self.instance_state = instance.get("State").get("Name")
         self.instance_dns = instance.get("PublicDnsName")
         self.instance_ip = instance.get("PublicIpAddress")
+        self.is_instance_running = bool(self.instance_state in RUNNING_STATES)
 
-    def check_server_status(self) -> dict:
-        self.update_instance_details(self.get_instance_by_id())
-        return {"state": self.instance_state, "dns": self.instance_dns, "ip": self.instance_ip}
+    def update_instance_details(self):
+        """Update instance state, dns, ip, and state
+        """
+        self._parse_instance_details(self._get_instance_by_id())
 
-    def is_server_running(self) -> bool:
-        self.update_instance_details(self.get_instance_by_id())
-        return bool(self.instance_state in RUNNING_STATES)
-
-    def start_server(self) -> dict:
-        self.update_instance_details(self.get_instance_by_id())
-        if self.instance_state in RUNNING_STATES:
-            return self.check_server_status()
+    def start_instance(self) -> bool:
+        """Start the instance if not in running state
+        
+        Returns:
+            bool: True if actions taken, False if no actions are taken
+        """
+        self.update_instance_details()
+        if self.is_instance_running:
+            return False
 
         self.ec2_client.start_instances(InstanceIds=[self.instance_id])
-        response = self.check_server_status()
+        self.update_instance_details()
 
         while self.instance_state == "pending":
-            response = self.check_server_status()
+            time.sleep(5)
+            self.update_instance_details()
 
-        response["start"] = True
+        self.update_instance_details()
+        return True
 
-        return response
+    def stop_instance(self) -> bool:
+        """Stop the instance if not in a stopped state
 
-    def stop_server(self) -> dict:
-        self.update_instance_details(self.get_instance_by_id())
-        if self.instance_state in STOPPED_STATES:
-            return self.check_server_status()
+        Return:
+            bool: True if actions taken, False if no actions are taken
+        """
+        self.update_instance_details()
+        if not self.is_instance_running:
+            return False
 
         self.ec2_client.stop_instances(InstanceIds=[self.instance_id])
-        response = self.check_server_status()
-        response["ip"] = None
-        response["dns"] = None
-        response["stop"] = True
-
-        return response
+        self.update_instance_details()
+        return True

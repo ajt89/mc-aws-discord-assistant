@@ -4,14 +4,14 @@ import discord
 
 from chat import ChatService
 from constants import DISCORD_BOT_TOKEN, MC_CHANNEL_ID, SERVER_CHECK_INTERVAL
-from mc_server_status import MCServerStatus
+from mc_server_actions import MCServerActions
 
 
 class BotClient(discord.Client):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.mcss = MCServerStatus()
+        self.mcsa = MCServerActions()
         self.chat_service = ChatService()
         self.bg_task = self.loop.create_task(self.background_task())
 
@@ -29,7 +29,7 @@ class BotClient(discord.Client):
 
         channel = self.get_channel(MC_CHANNEL_ID)
         while not self.is_closed():
-            if self.mcss.mc_server_status():
+            if self.mcsa.shutdown_if_server_inactive():
                 await channel.send("Server inactive, shutting down")
             await asyncio.sleep(SERVER_CHECK_INTERVAL)
 
