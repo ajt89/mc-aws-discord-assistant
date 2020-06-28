@@ -12,6 +12,7 @@ FROM base
 WORKDIR /bot
 
 COPY --from=builder /install /usr/local
-COPY . .
+COPY bot.py .
+COPY mcad mcad
 
 CMD ["python", "/bot/bot.py"]
