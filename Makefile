@@ -29,10 +29,10 @@ run:
 	python bot/bot.py
 
 docker-build:
-	docker build -t $(DOCKER_HOST)/mc-aws-discord-assistant:$(TAG) . 
+	docker build -t $(DOCKER_REPO_USER)/mc-aws-discord-assistant:$(TAG) . 
 
 docker-run:
-	- docker run --rm --env-file .env $(DOCKER_HOST)/mc-aws-discord-assistant:$(TAG)
+	- docker run --rm --env-file .env $(DOCKER_REPO_USER)/mc-aws-discord-assistant:$(TAG)
 
 docker-push:
-	- docker push $(DOCKER_HOST)/mc-aws-discord-assistant:$(TAG)
+	- docker push $(DOCKER_REPO_USER)/mc-aws-discord-assistant:$(TAG)
