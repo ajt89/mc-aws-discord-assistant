@@ -1,5 +1,5 @@
-from bot.aws import AWSService
-from bot.mc import MCService
+from mcad.aws import AWSService
+from mcad.mc import MCService
 
 
 class MCServerActions:

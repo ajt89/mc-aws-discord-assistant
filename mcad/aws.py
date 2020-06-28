@@ -2,7 +2,7 @@ import time
 
 import boto3
 
-from bot.constants import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, REGION
+from mcad.constants import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, EC2_INSTANCE_NAME, REGION
 
 STOPPED_STATES = ["stopping", "stopped"]
 RUNNING_STATES = ["pending", "running"]
@@ -26,7 +26,7 @@ class AWSService:
 
     def _get_instance_by_name(self) -> dict:
         response = self.ec2_client.describe_instances(
-            Filters=[{"Name": "tag:Name", "Values": ["minecraft-server"]}]
+            Filters=[{"Name": "tag:Name", "Values": [EC2_INSTANCE_NAME]}]
         )
         return response.get("Reservations")[0].get("Instances")[0]
 

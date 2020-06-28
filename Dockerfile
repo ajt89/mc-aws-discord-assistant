@@ -12,6 +12,6 @@ FROM base
 WORKDIR /bot
 
 COPY --from=builder /install /usr/local
-COPY bot .
+COPY . .
 
 CMD ["python", "/bot/bot.py"]

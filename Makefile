@@ -26,7 +26,7 @@ test:
 
 run:
 	- . .venv/bin/activate; \
-	python bot/bot.py
+	python bot.py
 
 docker-build:
 	docker build -t $(DOCKER_REPO_USER)/mc-aws-discord-assistant:$(TAG) . 

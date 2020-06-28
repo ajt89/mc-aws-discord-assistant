@@ -2,9 +2,9 @@ import asyncio
 
 import discord
 
-from bot.chat import ChatService
-from bot.constants import DISCORD_BOT_TOKEN, MC_CHANNEL_ID, SERVER_CHECK_INTERVAL
-from bot.mc_server_actions import MCServerActions
+from mcad.chat import ChatService
+from mcad.constants import DISCORD_BOT_TOKEN, MC_CHANNEL_ID, SERVER_CHECK_INTERVAL
+from mcad.mc_server_actions import MCServerActions
 
 
 class BotClient(discord.Client):

@@ -3,6 +3,7 @@ AUTHORIZED_CHANNEL=minecraft
 DISCORD_BOT_TOKEN=<bot-token-here>
 AWS_ACCESS_KEY_ID=<access-key-here>
 AWS_SECRET_ACCESS_KEY=<secret-access-key-here>
+EC2_INSSTANCE_NAME=minecraft-server
 REGION=us-west-1
 TAG=active
 DOCKER_HOST=ajt89

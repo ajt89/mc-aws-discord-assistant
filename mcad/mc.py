@@ -1,6 +1,6 @@
 from mcrcon import MCRcon, socket
 
-from bot.constants import RCON_PASSWORD
+from mcad.constants import RCON_PASSWORD
 
 LIST_USERS_COMMAND = "/list"
 STOP_SERVER_COMMAND = "/stop"
