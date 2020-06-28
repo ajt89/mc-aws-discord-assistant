@@ -17,8 +17,12 @@ update:
 
 format:
 	- . .venv/bin/activate; \
-	isort -rc; \
+	isort -rc .; \
 	black . 
+
+test:
+	- . .venv/bin/activate; \
+	python -m unittest discover
 
 run:
 	- . .venv/bin/activate; \

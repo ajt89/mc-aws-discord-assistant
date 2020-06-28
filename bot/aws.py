@@ -2,7 +2,7 @@ import time
 
 import boto3
 
-from constants import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, REGION
+from bot.constants import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, REGION
 
 STOPPED_STATES = ["stopping", "stopped"]
 RUNNING_STATES = ["pending", "running"]

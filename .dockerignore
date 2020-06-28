@@ -9,4 +9,5 @@ Makefile
 *.txt
 *.md
 deployment
+tests
 !requirements.txt

@@ -1,7 +1,7 @@
 import discord
 
-from constants import AUTHORIZED_CHANNEL, AUTHORIZED_ROLE
-from mc_server_actions import MCServerActions
+from bot.constants import AUTHORIZED_CHANNEL, AUTHORIZED_ROLE
+from bot.mc_server_actions import MCServerActions
 
 
 class ChatService:
