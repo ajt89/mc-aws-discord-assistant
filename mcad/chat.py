@@ -25,6 +25,8 @@ class ChatService:
         if not message.content.startswith("!mc "):
             return True
 
+        return False
+
     def handle_message(self, message: discord.message.Message) -> str:
         message_params = message.content.split(" ")[1:]
         number_of_arguments = len(message_params)

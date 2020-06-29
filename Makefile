@@ -22,7 +22,11 @@ format:
 
 test:
 	- . .venv/bin/activate; \
-	python -m unittest discover
+	unittest-parallel -t . -s mcad
+
+test-file:
+	- . .venv/bin/activate; \
+	python -m unittest mcad/tests/$(TEST_FILE)
 
 run:
 	- . .venv/bin/activate; \
